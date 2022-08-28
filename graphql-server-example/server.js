@@ -1,10 +1,25 @@
 import { ApolloServer, gql } from "apollo-server";
 
+// Schema definition
 const typeDefs = gql`
+  type User {
+    id: ID!
+    username: String!
+    firstName: String!
+    lastName: String!
+  }
+  type Tweet {
+    id: ID!
+    text: String!
+    author: User!
+  }
   type Query {
-    text: String
-    hello: String
-    # allFilms:
+    allTweets: [Tweet!]!
+    tweet(id: ID!): Tweet
+  }
+  type Mutation {
+    postTweet(text: String!, userId: ID!): Tweet!
+    deleteTweet(id: ID!): Boolean!
   }
 `;
 
