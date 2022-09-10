@@ -5,32 +5,17 @@ let tweets = [
   {
     id: "1",
     text: "hello world!",
-    author: {
-      id: "1",
-      username: "nwnp",
-      firstName: "jin",
-      lastName: "jeong woo",
-    },
+    userId: "1",
   },
   {
     id: "2",
     text: "hello world!2",
-    author: {
-      id: "2",
-      username: "jjw",
-      firstName: "test",
-      lastName: "hi",
-    },
+    userId: "2",
   },
   {
     id: "3",
     text: "hello world!3",
-    author: {
-      id: "3",
-      username: "ujmn",
-      firstName: "hihi",
-      lastName: "test",
-    },
+    userId: "3",
   },
 ];
 
@@ -101,8 +86,16 @@ const resolvers = {
   },
   User: {
     // fullName(root) {
+    firstName({ firstName }) {
+      return firstName;
+    },
     fullName({ firstName, lastName }) {
       return firstName + ` ${lastName}`;
+    },
+  },
+  Tweet: {
+    author({ userId }) {
+      return users.find((user) => user.id === userId);
     },
   },
 };
