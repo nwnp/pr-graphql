@@ -1,16 +1,6 @@
-const { ApolloServer } = require("apollo-server");
-
-const typeDefs = `
-  type Query {
-    totalPhotos: Int!
-  }
-`;
-
-const resolvers = {
-  Query: {
-    totalPhotos: () => 42,
-  },
-};
+import { ApolloServer } from "apollo-server";
+import { resolvers } from "./common/resolvers.js";
+import { typeDefs } from "./common/typeDefs.js";
 
 const server = new ApolloServer({
   typeDefs,
