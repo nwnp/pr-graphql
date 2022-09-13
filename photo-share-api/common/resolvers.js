@@ -1,4 +1,5 @@
-let photos = [];
+import { users, photos } from "./sample-data.js";
+
 let _id = 0;
 
 export const resolvers = {
@@ -10,13 +11,22 @@ export const resolvers = {
     postPhoto(_, args) {
       const newPhoto = {
         id: _id++,
-        ...args,
+        ...args.input,
       };
+      console.log(args.input);
       photos.push(newPhoto);
       return newPhoto;
     },
   },
   Photo: {
     url: (parent) => `http://localhost:4000/img/${parent.id}.jpg`,
+    postedBy: (parent) => {
+      return users.find((user) => user.githubLogin === parent.githubUser);
+    },
+  },
+  User: {
+    postedPhotos: (parent) => {
+      return photos.filter((photo) => photo.githubUser === parent.githubLogin);
+    },
   },
 };
