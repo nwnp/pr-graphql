@@ -1,4 +1,4 @@
-export const resolvers = {
+export const query = {
   Query: {
     totalPhotos: (parent, args, { db }) => {
       db.collection("photos").estimatedDocumentCount();

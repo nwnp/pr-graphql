@@ -1,4 +1,5 @@
 export const typeDefs = `
+scalar DateTime
 enum PhotoCategory {
   SELFIE
   PORTRAIT
@@ -11,6 +12,7 @@ type User {
   name: String
   avatar: String
   postedPhotos: [Photo!]!
+  inPhotos: [Photo!]!
 }
 type Photo {
   id: ID!
@@ -19,6 +21,8 @@ type Photo {
   description: String
   category: PhotoCategory!
   postedBy: User!
+  taggedUsers: [User!]!
+  created: DateTime!
 }
 input PostPhotoInput {
   name: String!
@@ -28,8 +32,9 @@ input PostPhotoInput {
 type Query {
   totalPhotos: Int!
   allPhotos: [Photo!]!
+  totalUsers: Int!
+  allUsers: [User!]!
 }
 type Mutation {
   postPhoto(input: PostPhotoInput!): Photo!
-}
-`;
+}`;
