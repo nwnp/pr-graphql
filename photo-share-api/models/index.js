@@ -15,6 +15,5 @@ const client = await MongoClient.connect(MONGO_DB, {
     console.error(err);
     throw new Error("MongoDB connection failed");
   });
-const db = client.db();
 
-export default db;
+export const db = client.db();

@@ -1,12 +1,13 @@
 import { ApolloServer } from "apollo-server-express";
-import { resolvers } from "./common/resolvers.js";
-import { typeDefs } from "./common/typeDefs.js";
+import { resolvers } from "./graphql/index.js";
+import { readFileSync } from "fs";
+import { db } from "./models/index.js";
 import expressPlayground from "graphql-playground-middleware-express";
 import express from "express";
 import dotenv from "dotenv";
-import db from "./models/index.js";
 
 dotenv.config();
+const typeDefs = readFileSync("./graphql/typeDefs.graphql", "UTF-8");
 
 const start = async () => {
   const app = express();
