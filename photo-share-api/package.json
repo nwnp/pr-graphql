@@ -19,6 +19,7 @@
     "graphql": "^16.6.0",
     "graphql-playground-middleware-express": "^1.7.23",
     "mongodb": "^4.9.1",
+    "node-fetch": "^3.2.10",
     "nodemon": "^2.0.19"
   },
   "devDependencies": {
